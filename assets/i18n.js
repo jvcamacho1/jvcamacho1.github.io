@@ -134,6 +134,8 @@ const EN = {
   "road.title": "What I am building next",
   "road.lead": "My professional code is private, so these public projects show the same kind of work, plus tools I am adding to my stack. Each one will have public code, an architecture diagram, and a README explaining the decisions.",
   "road.badge": "In progress",
+  "road.badge.live": "Published",
+  "road.2.painel": "See the dashboard",
   "road.dt.problem": "Problem",
   "road.dt.shows": "What it demonstrates",
   "road.1.title": "AWS lakehouse as code",
