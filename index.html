@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-title-en="José Camacho · Data Engineer">José Camacho · Engenheiro de Dados</title>
+<meta name="description" content="José Camacho, Data Engineer: pipelines batch e streaming em AWS e Hadoop, Terraform, CI/CD e Data Mesh. Data Engineering portfolio.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" data-cfg="name">José Camacho</a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#sobre" data-i18n="nav.about">Sobre</a>
+      <a href="#experiencia" data-i18n="nav.exp">Experiência</a>
+      <a href="#stack" data-i18n="nav.stack">Stack</a>
+      <a href="#destaque" data-i18n="nav.featured">Projeto</a>
+      <a href="#proximos" data-i18n="nav.roadmap">Próximos</a>
+      <a href="#contato" data-i18n="nav.contact">Contato</a>
+    </nav>
+    <div class="controls">
+      <div class="lang-switch" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="btn-icon" id="theme-toggle" aria-label="Tema / Theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="hero.eyebrow">Engenheiro de Dados</p>
+      <h1>José Victor Xavier Camacho</h1>
+      <p class="role" data-i18n="hero.role">Data Engineer na GFT · AWS, Big Data e Infraestrutura como Código</p>
+      <p class="lead" data-i18n="hero.lead">Projeto, construo e otimizo pipelines de dados batch e streaming em AWS e Hadoop: da ingestão ao Data Mesh, com Terraform, CI/CD e testes automatizados.</p>
+      <div class="actions">
+        <a class="btn primary" href="#experiencia" data-i18n="hero.cta.exp">Ver experiência</a>
+        <a class="btn" data-cfg-href="linkedin" href="https://www.linkedin.com/in/jvcamacho/">LinkedIn</a>
+        <a class="btn" data-cfg-href="github" href="https://github.com/jvcamacho1">GitHub</a>
+        <a class="btn" data-cv href="cv/curriculo-pt.pdf" data-i18n="hero.cta.cv">Currículo (PDF)</a>
+      </div>
+      <div class="grid cols-4" style="margin-top:40px">
+        <div class="stat"><b>60+</b><span data-i18n="num.1">contas AWS democratizadas no Data Mesh</span></div>
+        <div class="stat"><b>200+</b><span data-i18n="num.2">tabelas disponibilizadas no Data Mesh</span></div>
+        <div class="stat"><b data-i18n="num.3.v">940 h</b><span data-i18n="num.3">de processamento economizadas por ano</span></div>
+        <div class="stat"><b data-i18n="num.4.v">4+</b><span data-i18n="num.4">anos trabalhando com dados</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="about.eyebrow">Sobre</p>
+      <h2 data-i18n="about.title">Pipelines escaláveis, entregues como código</h2>
+      <p class="lead" data-i18n="about.p1">Sou Engenheiro de Computação pela UTFPR e trabalho com dados desde 2022. Minha experiência inclui projetar, implementar e otimizar pipelines de dados, com base sólida em Big Data (<strong>Hadoop, PySpark, Hive</strong>) e no ecossistema AWS (<strong>Glue, Athena, S3, Lambda, Step Functions, Kinesis</strong>), além de bancos relacionais e não relacionais.</p>
+      <p class="lead" data-i18n="about.p2">Hoje, na GFT, implanto pipelines batch e streaming com <strong>Terraform e GitHub Actions</strong> e ajudo a transformar dados de dezenas de contas AWS em produtos num <strong>Data Mesh</strong>. Antes, na TCS, migrei rotinas legadas de SQL Server e SAS para Hadoop e, depois, para AWS Glue.</p>
+      <p class="lead" data-i18n="about.p3">Fora do trabalho, construo o <strong>Órbita Notícias</strong>, um pipeline de notícias que opero em produção de ponta a ponta, da ingestão ao serving.</p>
+    </div>
+  </section>
+
+  <section id="experiencia">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="exp.eyebrow">Experiência</p>
+      <h2 data-i18n="exp.title">Onde trabalhei</h2>
+      <div class="timeline">
+        <article class="card job">
+          <header><h3 data-i18n="exp.gft.role">Data Engineer · GFT</h3><span class="date" data-i18n="exp.gft.date">mai 2024 — atual</span></header>
+          <ul class="check">
+            <li data-i18n="exp.gft.1">Implantação de pipelines de dados <strong>batch e streaming</strong> com Terraform e GitHub Actions.</li>
+            <li data-i18n="exp.gft.2">Democratização de <strong>mais de 60 contas AWS</strong> e <strong>mais de 200 tabelas</strong> do cliente para o Data Mesh.</li>
+            <li data-i18n="exp.gft.3">Criação de um <strong>template Terraform para jobs do Glue</strong> que ingere dados históricos de tabelas do DynamoDB.</li>
+            <li data-i18n="exp.gft.4">Trabalho com múltiplas squads na adoção de templates Terraform para a democratização de dados no Data Mesh.</li>
+            <li data-i18n="exp.gft.5">Implantação de pipelines de ingestão via <strong>Lambda</strong> e snapshots de diversas instâncias do <strong>RDS</strong>.</li>
+          </ul>
+          <ul class="tags"><li>Terraform</li><li>GitHub Actions</li><li>Glue</li><li>Kinesis</li><li>Firehose</li><li>Lambda</li><li>Step Functions</li><li>DMS</li><li>DynamoDB</li><li>Aurora</li><li>PostgreSQL</li><li>MySQL</li><li>pytest</li></ul>
+        </article>
+        <article class="card job">
+          <header><h3 data-i18n="exp.tcs.role">Data Engineer · Tata Consultancy Services</h3><span class="date" data-i18n="exp.tcs.date">jul 2022 — abr 2024 · Londrina</span></header>
+          <ul class="check">
+            <li data-i18n="exp.tcs.1">Migração de rotinas do <strong>SQL Server 2008 e SAS</strong> para Hadoop (EC2 + EMR), convertendo procedimentos transacionais em pipelines orquestrados pelo <strong>Oozie</strong> com ETL em <strong>HiveQL</strong>.</li>
+            <li data-i18n="exp.tcs.2">Migração de processos ETL/ELT coordenados por código Python on-premises para o ambiente Hadoop na AWS.</li>
+            <li data-i18n="exp.tcs.3">Pipelines que calculam <strong>mais de 10 KPIs de 7 departamentos</strong>, antes calculados à mão no Excel.</li>
+            <li data-i18n="exp.tcs.4"><strong>Economia de 940 horas/ano</strong> de processamento com a migração do on-premises para Hadoop.</li>
+            <li data-i18n="exp.tcs.5">Migração de ETLs em Hive para <strong>AWS Glue com PySpark</strong>.</li>
+          </ul>
+          <ul class="tags"><li>Hadoop</li><li>Hive</li><li>PySpark</li><li>Oozie</li><li>Cloudera</li><li>EMR</li><li>S3</li><li>Glue</li><li>Athena</li><li>SQL Server</li><li>Alteryx</li><li>pandas</li></ul>
+        </article>
+        <article class="card job">
+          <header><h3 data-i18n="exp.intern.role">Estagiário · Tata Consultancy Services</h3><span class="date" data-i18n="exp.intern.date">mar 2022 — jun 2022 · Londrina</span></header>
+        </article>
+      </div>
+
+      <h3 style="margin-top:36px" data-i18n="edu.title">Formação e certificações</h3>
+      <div class="grid cols-2">
+        <div class="card">
+          <p><strong data-i18n="edu.degree">Bacharelado em Engenharia da Computação</strong></p>
+          <p class="muted" data-i18n="edu.school">Universidade Tecnológica Federal do Paraná (UTFPR), Cornélio Procópio</p>
+          <p data-i18n="edu.award">3º lugar na XIII Feira de Ideias (out 2019) com a ideia "NoQueue"</p>
+        </div>
+        <div class="card">
+          <p><strong data-i18n="edu.cert">AWS Certified Cloud Practitioner (2023)</strong></p>
+          <p class="muted" data-i18n="edu.courses">SQL (HackerRank, 2022) · Python (CodinGame, 2022) · Coding Speed: Legend (CodinGame, 2023)</p>
+          <p data-i18n="edu.lang">Idiomas: português e inglês</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="stack.eyebrow">Stack</p>
+      <h2 data-i18n="stack.title">Ferramentas</h2>
+      <div class="legend">
+        <span><i style="background:var(--accent-soft);border:1px solid var(--accent)"></i><span data-i18n="stack.legend.used">Usado profissionalmente ou em produção</span></span>
+        <span><i style="background:var(--surface-2);border:1px solid var(--border)"></i><span data-i18n="stack.legend.learning">Em estudo / próximos projetos</span></span>
+      </div>
+      <!-- "chip used" = já usado; "chip" = estudando. -->
+      <div class="grid cols-2">
+        <div class="card stack-group">
+          <h3 data-i18n="stack.g.lang">Linguagens e processamento</h3>
+          <ul class="chips">
+            <li class="chip used">Python</li><li class="chip used">SQL</li><li class="chip used">PySpark</li><li class="chip used">HiveQL</li>
+            <li class="chip used">pandas</li><li class="chip used">numpy</li><li class="chip used" data-i18n="stack.batch">ETL batch e streaming</li>
+            <li class="chip used">Alteryx</li><li class="chip">Airflow</li><li class="chip">dbt</li><li class="chip">Kafka</li>
+          </ul>
+        </div>
+        <div class="card stack-group">
+          <h3 data-i18n="stack.g.aws">AWS</h3>
+          <ul class="chips">
+            <li class="chip used">Glue</li><li class="chip used">Athena</li><li class="chip used">S3</li><li class="chip used">Lambda</li>
+            <li class="chip used">Step Functions</li><li class="chip used">Kinesis</li><li class="chip used">Firehose</li><li class="chip used">DMS</li>
+            <li class="chip used">EMR</li><li class="chip used">EC2</li><li class="chip used">RDS / Aurora</li><li class="chip used">DynamoDB</li>
+          </ul>
+        </div>
+        <div class="card stack-group">
+          <h3 data-i18n="stack.g.storage">Bancos de dados e Big Data</h3>
+          <ul class="chips">
+            <li class="chip used">PostgreSQL</li><li class="chip used">MySQL</li><li class="chip used">SQL Server</li><li class="chip used">SQLite</li>
+            <li class="chip used">Hadoop</li><li class="chip used">Hive</li><li class="chip used">Oozie</li><li class="chip used">Cloudera</li>
+            <li class="chip used">Data Mesh</li><li class="chip">Apache Iceberg</li>
+          </ul>
+        </div>
+        <div class="card stack-group">
+          <h3 data-i18n="stack.g.ops">Infraestrutura, DevOps e métodos</h3>
+          <ul class="chips">
+            <li class="chip used">Terraform</li><li class="chip used">GitHub Actions</li><li class="chip used">CI/CD</li><li class="chip used">pytest</li>
+            <li class="chip used">Linux</li><li class="chip used">nginx</li><li class="chip used" data-i18n="stack.agile">Scrum / Kanban</li><li class="chip">Docker</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="destaque">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="feat.eyebrow">Projeto pessoal</p>
+      <span class="badge live" data-i18n="feat.badge">No ar em produção</span>
+      <h2>Órbita Notícias</h2>
+      <p class="lead" data-i18n="feat.desc">Comparador de cobertura jornalística. Coleta as manchetes de 42 veículos de todo o espectro político, detecta quais tratam do <strong>mesmo acontecimento</strong> e mostra, lado a lado, como cada um enquadrou o fato. Projetei, construí e opero o sistema de ponta a ponta.</p>
+
+      <div class="pipeline">
+<svg viewBox="0 0 900 150" role="img" aria-labelledby="pipe-t">
+  <title id="pipe-t">Pipeline: fontes → ingestão → SQLite → agrupamento → cache → Flask + nginx</title>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor" style="color:var(--muted)"/></marker></defs>
+  <g class="node"><rect x="4" y="45" width="122" height="60" rx="10"/><text x="65" y="72" text-anchor="middle" data-i18n="pipe.src">42 veículos</text><text class="sub" x="65" y="90" text-anchor="middle" data-i18n="pipe.src.sub">RSS + sitemap</text></g>
+  <g class="node hl"><rect x="156" y="45" width="122" height="60" rx="10"/><text x="217" y="72" text-anchor="middle" data-i18n="pipe.ingest">Ingestão</text><text class="sub" x="217" y="90" text-anchor="middle" data-i18n="pipe.ingest.sub">valida · deduplica</text></g>
+  <g class="node"><rect x="308" y="45" width="122" height="60" rx="10"/><text x="369" y="72" text-anchor="middle" data-i18n="pipe.store">SQLite</text><text class="sub" x="369" y="90" text-anchor="middle" data-i18n="pipe.store.sub">artigos · migrações</text></g>
+  <g class="node hl"><rect x="460" y="45" width="122" height="60" rx="10"/><text x="521" y="72" text-anchor="middle" data-i18n="pipe.cluster">Agrupamento</text><text class="sub" x="521" y="90" text-anchor="middle" data-i18n="pipe.cluster.sub">TF-IDF + regras</text></g>
+  <g class="node"><rect x="612" y="45" width="122" height="60" rx="10"/><text x="673" y="72" text-anchor="middle" data-i18n="pipe.cache">Cache</text><text class="sub" x="673" y="90" text-anchor="middle" data-i18n="pipe.cache.sub">pré-computado</text></g>
+  <g class="node"><rect x="764" y="45" width="132" height="60" rx="10"/><text x="830" y="72" text-anchor="middle" data-i18n="pipe.serve">Flask + nginx</text><text class="sub" x="830" y="90" text-anchor="middle" data-i18n="pipe.serve.sub">cache de 60 s</text></g>
+  <path class="edge" d="M126,75 H152" marker-end="url(#arr)"/><path class="edge" d="M278,75 H304" marker-end="url(#arr)"/>
+  <path class="edge" d="M430,75 H456" marker-end="url(#arr)"/><path class="edge" d="M582,75 H608" marker-end="url(#arr)"/>
+  <path class="edge" d="M734,75 H760" marker-end="url(#arr)"/>
+  <text class="edge-label" x="217" y="30" text-anchor="middle" data-i18n="pipe.every5">a cada 5 min</text>
+  <text class="edge-label" x="521" y="30" text-anchor="middle" data-i18n="pipe.every15">a cada 15 min</text>
+  <text class="sub" x="445" y="138" text-anchor="middle">worker (systemd)  ·  web (gunicorn)</text>
+</svg>
+
+      </div>
+
+      <div class="grid cols-4">
+        <div class="stat"><b>42</b><span data-i18n="feat.s1">fontes ingeridas</span></div>
+        <div class="stat"><b>5 min</b><span data-i18n="feat.s2">intervalo de ingestão</span></div>
+        <div class="stat"><b>15 min</b><span data-i18n="feat.s3">intervalo de reagrupamento</span></div>
+        <div class="stat"><b data-i18n="feat.v4">1.130</b><span data-i18n="feat.s4">testes automatizados</span></div>
+        <div class="stat"><b>48 h</b><span data-i18n="feat.s5">janela de comparação</span></div>
+        <div class="stat"><b>100%</b><span data-i18n="feat.s6">precision no corpus rotulado</span></div>
+        <div class="stat"><b>1 GB</b><span data-i18n="feat.s7">servidor de produção</span></div>
+        <div class="stat"><b>7</b><span data-i18n="feat.s8">workflows no GitHub Actions</span></div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3 data-i18n="feat.hl.title">Destaques de engenharia de dados</h3>
+        <ul class="check">
+          <li data-i18n="feat.hl.1"><strong>Ingestão resiliente:</strong> RSS com fallback automático para o sitemap de notícias quando o feed congela sem aviso; log de falhas por fonte em JSONL; workflow diário de saúde dos feeds.</li>
+          <li data-i18n="feat.hl.2"><strong>Migrações de schema como comando:</strong> versionadas, com trava e backup antes de cada execução; um script de backfill reconstrói eventos antigos.</li>
+          <li data-i18n="feat.hl.3"><strong>Camada de serving pré-computada:</strong> a etapa pesada (TF-IDF + agrupamento) roda só no worker; a camada web lê um cache pronto e continua no ar se o worker cair.</li>
+          <li data-i18n="feat.hl.4"><strong>Qualidade medida:</strong> corpus rotulado de 192 manchetes, precision/recall/F1 por par e um teste que reprova se a métrica cair abaixo da linha de base.</li>
+          <li data-i18n="feat.hl.5"><strong>CI/CD:</strong> lint, testes, auditoria de dependências, deploy com health check e rollback automático.</li>
+        </ul>
+        <ul class="tags"><li>Python</li><li>SQLite</li><li>scikit-learn</li><li>spaCy</li><li>Flask</li><li>nginx</li><li>systemd</li><li>GitHub Actions</li></ul>
+        <div class="actions" style="margin-top:12px">
+          <a class="btn primary" href="projetos/orbita.html" data-i18n="feat.cta.case">Ler o estudo de caso</a>
+          <a class="btn" data-cfg-href="orbita_site" href="#" data-i18n="feat.cta.site">Visitar o site</a>
+          <a class="btn" data-cfg-href="orbita_repo" href="#" data-i18n="feat.cta.repo">Código</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proximos">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="road.eyebrow">Próximos projetos</p>
+      <h2 data-i18n="road.title">O que estou construindo agora</h2>
+      <p class="lead" data-i18n="road.lead">Meu código profissional é privado, então estes projetos públicos mostram o mesmo tipo de trabalho, somados a ferramentas que estou adicionando à minha stack. Cada um terá código público, diagrama de arquitetura e um README explicando as decisões.</p>
+      <div class="grid cols-3" style="margin-top:24px">
+        <article class="card">
+          <span class="badge" data-i18n="road.badge">Em construção</span>
+          <h3 data-i18n="road.1.title">Lakehouse na AWS como código</h3>
+          <dl>
+            <dt data-i18n="road.dt.problem">Problema</dt>
+            <dd data-i18n="road.1.problem">Montar um lake bronze/silver/gold no S3 com tabelas Apache Iceberg, consultado pelo Athena e provisionado inteiro com Terraform.</dd>
+            <dt data-i18n="road.dt.shows">O que demonstra</dt>
+            <dd data-i18n="road.1.shows">Jobs do Glue em PySpark, particionamento e compactação, Glue Data Catalog, CI/CD com GitHub Actions, controle de custos.</dd>
+          </dl>
+          <ul class="tags"><li>Terraform</li><li>Glue</li><li>Iceberg</li><li>Athena</li></ul>
+        </article>
+        <article class="card">
+          <span class="badge" data-i18n="road.badge">Em construção</span>
+          <h3 data-i18n="road.2.title">ELT de dados públicos com Airflow + dbt</h3>
+          <dl>
+            <dt data-i18n="road.dt.problem">Problema</dt>
+            <dd data-i18n="road.2.problem">Consolidar indicadores econômicos brasileiros (Banco Central, IBGE) num modelo analítico que se atualiza sozinho.</dd>
+            <dt data-i18n="road.dt.shows">O que demonstra</dt>
+            <dd data-i18n="road.2.shows">Orquestração com retries e backfill, modelagem dimensional (staging → marts), testes e documentação no dbt, cargas incrementais.</dd>
+          </dl>
+          <ul class="tags"><li>Airflow</li><li>dbt</li><li>PostgreSQL</li><li>Docker</li></ul>
+        </article>
+        <article class="card">
+          <span class="badge" data-i18n="road.badge">Em construção</span>
+          <h3 data-i18n="road.3.title">Eventos em streaming com Kafka</h3>
+          <dl>
+            <dt data-i18n="road.dt.problem">Problema</dt>
+            <dd data-i18n="road.3.problem">Processar um fluxo de eventos em tempo real (ex.: posição dos ônibus) e disparar alertas quando houver anomalia.</dd>
+            <dt data-i18n="road.dt.shows">O que demonstra</dt>
+            <dd data-i18n="road.3.shows">Producers/consumers, particionamento, agregações em janelas de tempo, entrega at-least-once e sinks idempotentes.</dd>
+          </dl>
+          <ul class="tags"><li>Kafka</li><li>Spark Streaming</li><li>Python</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="contact.eyebrow">Contato</p>
+      <h2 data-i18n="contact.title">Fale comigo</h2>
+      <p class="lead" data-i18n="contact.lead">Quer conversar sobre pipelines de dados, AWS ou algum destes projetos? Me chame por e-mail ou pelo LinkedIn.</p>
+      <div class="actions">
+        <a class="btn primary" data-cfg-href="email" href="mailto:jv_camacho@hotmail.com">E-mail</a>
+        <a class="btn" data-cfg-href="linkedin" href="https://www.linkedin.com/in/jvcamacho/">LinkedIn</a>
+        <a class="btn" data-cfg-href="github" href="https://github.com/jvcamacho1">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> <span data-cfg="name">José Camacho</span> · <span data-i18n="footer.text">Site estático, sem rastreadores. Código-fonte no repositório.</span></div>
+</footer>
+<script src="assets/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-title-en="Órbita Notícias · Case study">Órbita Notícias · Estudo de caso</title>
+<meta name="description" content="Estudo de caso: pipeline de notícias em produção (ingestão, armazenamento, agrupamento, qualidade de dados, operação). Case study.">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="case">
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="../index.html" data-i18n="ui.back">← Voltar ao portfólio</a>
+    <div class="controls">
+      <div class="lang-switch" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="btn-icon" id="theme-toggle" aria-label="Tema / Theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="case.eyebrow">Estudo de caso</p>
+      <h1 data-i18n="case.title">Órbita Notícias: um pipeline de notícias em produção</h1>
+      <p class="lead" data-i18n="case.lead">Como um comparador de notícias virou uma pequena plataforma de dados: 42 fontes, ingestão a cada 5 minutos, agrupamento com qualidade medida e uma camada de serving que sobrevive à queda do worker. Tudo numa VPS de 1 GB.</p>
+      <div class="actions">
+        <a class="btn primary" data-cfg-href="orbita_site" href="#" data-i18n="feat.cta.site">Visitar o site</a>
+        <a class="btn" data-cfg-href="orbita_repo" href="#" data-i18n="feat.cta.repo">Código</a>
+      </div>
+      <nav class="toc" aria-label="Seções">
+        <a href="#problema" data-i18n="case.toc.problem">Problema</a>
+        <a href="#arquitetura" data-i18n="case.toc.arch">Arquitetura</a>
+        <a href="#ingestao" data-i18n="case.toc.ingest">Ingestão</a>
+        <a href="#armazenamento" data-i18n="case.toc.storage">Armazenamento</a>
+        <a href="#processamento" data-i18n="case.toc.proc">Processamento</a>
+        <a href="#qualidade" data-i18n="case.toc.quality">Qualidade</a>
+        <a href="#operacao" data-i18n="case.toc.ops">Operação</a>
+        <a href="#aprendizados" data-i18n="case.toc.learn">Aprendizados</a>
+      </nav>
+    </div>
+  </section>
+
+  <section id="problema">
+    <div class="wrap">
+      <h2 data-i18n="case.problem.title">O problema</h2>
+      <p data-i18n="case.problem.p1">Cada veículo enquadra o mesmo fato de um jeito, mas compará-los exige abrir dezenas de sites. O Órbita automatiza isso: coleta todas as manchetes, encontra as que tratam do <strong>mesmo acontecimento</strong> numa janela de 48 horas e as coloca lado a lado, ordenadas pelo espectro editorial.</p>
+      <p data-i18n="case.problem.p2">Do ponto de vista de dados, isso exige: ingestão contínua de fontes heterogêneas que falham sem aviso, deduplicação e agrupamento de texto, pré-agregação para o serving e uma forma de <em>provar</em> que o agrupamento está certo.</p>
+    </div>
+  </section>
+
+  <section id="arquitetura">
+    <div class="wrap">
+      <h2 data-i18n="case.arch.title">Arquitetura</h2>
+      <div class="pipeline">
+<svg viewBox="0 0 900 150" role="img" aria-labelledby="pipe-t">
+  <title id="pipe-t">Pipeline: fontes → ingestão → SQLite → agrupamento → cache → Flask + nginx</title>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor" style="color:var(--muted)"/></marker></defs>
+  <g class="node"><rect x="4" y="45" width="122" height="60" rx="10"/><text x="65" y="72" text-anchor="middle" data-i18n="pipe.src">42 veículos</text><text class="sub" x="65" y="90" text-anchor="middle" data-i18n="pipe.src.sub">RSS + sitemap</text></g>
+  <g class="node hl"><rect x="156" y="45" width="122" height="60" rx="10"/><text x="217" y="72" text-anchor="middle" data-i18n="pipe.ingest">Ingestão</text><text class="sub" x="217" y="90" text-anchor="middle" data-i18n="pipe.ingest.sub">valida · deduplica</text></g>
+  <g class="node"><rect x="308" y="45" width="122" height="60" rx="10"/><text x="369" y="72" text-anchor="middle" data-i18n="pipe.store">SQLite</text><text class="sub" x="369" y="90" text-anchor="middle" data-i18n="pipe.store.sub">artigos · migrações</text></g>
+  <g class="node hl"><rect x="460" y="45" width="122" height="60" rx="10"/><text x="521" y="72" text-anchor="middle" data-i18n="pipe.cluster">Agrupamento</text><text class="sub" x="521" y="90" text-anchor="middle" data-i18n="pipe.cluster.sub">TF-IDF + regras</text></g>
+  <g class="node"><rect x="612" y="45" width="122" height="60" rx="10"/><text x="673" y="72" text-anchor="middle" data-i18n="pipe.cache">Cache</text><text class="sub" x="673" y="90" text-anchor="middle" data-i18n="pipe.cache.sub">pré-computado</text></g>
+  <g class="node"><rect x="764" y="45" width="132" height="60" rx="10"/><text x="830" y="72" text-anchor="middle" data-i18n="pipe.serve">Flask + nginx</text><text class="sub" x="830" y="90" text-anchor="middle" data-i18n="pipe.serve.sub">cache de 60 s</text></g>
+  <path class="edge" d="M126,75 H152" marker-end="url(#arr)"/><path class="edge" d="M278,75 H304" marker-end="url(#arr)"/>
+  <path class="edge" d="M430,75 H456" marker-end="url(#arr)"/><path class="edge" d="M582,75 H608" marker-end="url(#arr)"/>
+  <path class="edge" d="M734,75 H760" marker-end="url(#arr)"/>
+  <text class="edge-label" x="217" y="30" text-anchor="middle" data-i18n="pipe.every5">a cada 5 min</text>
+  <text class="edge-label" x="521" y="30" text-anchor="middle" data-i18n="pipe.every15">a cada 15 min</text>
+  <text class="sub" x="445" y="138" text-anchor="middle">worker (systemd)  ·  web (gunicorn)</text>
+</svg>
+
+      </div>
+      <p data-i18n="case.arch.p1">Duas cadências, ambas executadas por um worker no <code>systemd</code>: ingestão a cada 5 minutos e reagrupamento a cada 15. O processo web nunca calcula agrupamento; ele só lê o cache.</p>
+      <p data-i18n="case.arch.p2">O código segue arquitetura hexagonal: o <code>domain</code> não conhece Flask, SQLite nem spaCy, e um teste reprova quem cruzar a fronteira entre camadas. Trocar SQLite por PostgreSQL é escrever um adaptador novo, não reescrever regras.</p>
+    </div>
+  </section>
+
+  <section id="ingestao">
+    <div class="wrap">
+      <h2 data-i18n="case.ingest.title">Ingestão</h2>
+      <ul>
+        <li data-i18n="case.ingest.li1"><strong>Duas portas de entrada atrás da mesma interface:</strong> o RSS do veículo e, quando ele congela sem avisar, o sitemap de notícias do mesmo domínio.</li>
+        <li data-i18n="case.ingest.li2"><strong>Schema mínimo e controlado:</strong> manchete, descrição (até 240 caracteres), data, veículo e link. Nunca o corpo da matéria. A classificação do veículo vem da configuração, não do XML.</li>
+        <li data-i18n="case.ingest.li3"><strong>Validação na borda:</strong> link com esquema fora de http/https é descartado na entrada, o que bloqueia XSS armazenado vindo de um feed comprometido.</li>
+        <li data-i18n="case.ingest.li4"><strong>Observabilidade por fonte:</strong> toda falha vai para <code>feed_failures.jsonl</code> com horário, veículo, URL e tipo de erro. Um job diário no GitHub Actions relata a saúde dos feeds a partir do servidor.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="armazenamento">
+    <div class="wrap">
+      <h2 data-i18n="case.storage.title">Armazenamento e migrações</h2>
+      <p data-i18n="case.storage.p1">SQLite, por escolha: um único servidor de 1 GB, um escritor (o worker) e muitos leitores. O caminho do banco vem de uma variável de ambiente, então a suíte de testes usa um banco descartável e uma análise local abre um snapshot de produção sem sobrescrever nada.</p>
+      <p data-i18n="case.storage.p2">As migrações rodam como comando (<code>migrar.py</code>), versionadas, com trava e backup antes de aplicar. Um script de backfill (<code>backfill_eventos.py</code>) reconstrói eventos antigos quando uma regra muda.</p>
+    </div>
+  </section>
+
+  <section id="processamento">
+    <div class="wrap">
+      <h2 data-i18n="case.proc.title">Processamento</h2>
+      <p data-i18n="case.proc.p1">O agrupamento é dividido em três etapas, e essa divisão é a arquitetura em miniatura:</p>
+      <ol>
+        <li data-i18n="case.proc.li1"><strong>Preparar o texto</strong> é regra de domínio (a manchete pesa mais que o resumo).</li>
+        <li data-i18n="case.proc.li2"><strong>Similaridade</strong> é estatística: TF-IDF + cosseno, atrás de uma porta. É a única etapa que precisa de numpy/scikit-learn, e ela roda só no worker.</li>
+        <li data-i18n="case.proc.li3"><strong>Decidir o que é o mesmo acontecimento</strong> volta ao domínio: limiar de similaridade, vizinhos mais próximos mútuos, nome próprio compartilhado e regras específicas (ex.: pesquisas de institutos diferentes nunca se juntam).</li>
+      </ol>
+      <p data-i18n="case.proc.p2">O worker também pré-monta as visões pesadas: empacotar o painel de bolhas levava 260 ms por requisição e hoje não custa nada na hora de servir.</p>
+    </div>
+  </section>
+
+  <section id="qualidade">
+    <div class="wrap">
+      <h2 data-i18n="case.quality.title">Qualidade de dados</h2>
+      <p data-i18n="case.quality.p1">Ajustes no limiar eram conferidos no olho. Para responder "a correção quebrou outra coisa?", montei um <strong>corpus rotulado</strong>: todas as 192 manchetes publicadas numa janela de 30 minutos (43 agrupadas em 15 eventos, 149 únicas), com uma regra de rotulagem escrita.</p>
+      <p data-i18n="case.quality.p2">A avaliação é precision/recall/F1 <strong>por par</strong>, para que as matérias únicas não dominem a conta. O <code>test_corpus.py</code> reprova se a métrica cair abaixo da linha de base registrada.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th data-i18n="case.quality.th.threshold">limiar</th><th>precision</th><th>recall</th><th>F1</th></tr></thead>
+          <tbody>
+            <tr><td>0.35</td><td>0.943</td><td>0.623</td><td>0.750</td></tr>
+            <tr><td>0.40</td><td>0.939</td><td>0.585</td><td>0.721</td></tr>
+            <tr><td>0.45</td><td>1.000</td><td>0.321</td><td>0.486</td></tr>
+            <tr class="hl"><td>0.50 <span data-i18n="case.quality.prod">(produção)</span></td><td>1.000</td><td>0.396</td><td>0.568</td></tr>
+            <tr><td>0.60</td><td>1.000</td><td>0.208</td><td>0.344</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="callout" data-i18n="case.quality.p3">O F1 seria maior em 0,35, e isso sozinho não é motivo para mudar. O limiar de produção foi escolhido para evitar uma fusão errada conhecida e cara, que não está neste corpus. Escolher uma métrica é saber o que ela não enxerga.</p>
+    </div>
+  </section>
+
+  <section id="operacao">
+    <div class="wrap">
+      <h2 data-i18n="case.ops.title">Operação</h2>
+      <ul>
+        <li data-i18n="case.ops.li1"><strong>Degradação graciosa:</strong> se o worker cair, o site continua servindo o cache anterior; depois de 45 minutos, o processo web recalcula sozinho.</li>
+        <li data-i18n="case.ops.li2"><strong>Serving:</strong> o nginx guarda as respostas por 60 s com stale-while-revalidate e compressão; os arquivos estáticos têm versão no endereço e cache de um ano.</li>
+        <li data-i18n="case.ops.li3"><strong>CI/CD:</strong> fluxo feature → develop → release → main com GitHub Actions: lint, 1.130 testes, auditoria de dependências, deploy por SSH, health check que também verifica o worker e rollback automático.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="aprendizados">
+    <div class="wrap">
+      <h2 data-i18n="case.learn.title">Aprendizados e próximos passos</h2>
+      <ul>
+        <li data-i18n="case.learn.li1">Um conjunto rotulado para avaliação vale mais que qualquer intuição sobre limiares, e ele pegou erros nos meus próprios rótulos.</li>
+        <li data-i18n="case.learn.li2">Pré-computar no worker foi o maior ganho de desempenho, e ainda isolou as falhas.</li>
+        <li data-i18n="case.learn.li3">Próximos passos: levar o armazenamento para PostgreSQL, orquestrar as cadências com Airflow (retries, backfill, linhagem) e exportar o histórico para Parquet para análise.</li>
+      </ul>
+      <div class="actions"><a class="btn" href="../index.html" data-i18n="ui.back">← Voltar ao portfólio</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> <span data-cfg="name">José Camacho</span></div>
+</footer>
+<script src="../assets/i18n.js"></script>
+</body>
+</html>
