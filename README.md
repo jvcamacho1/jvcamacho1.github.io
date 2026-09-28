@@ -56,3 +56,21 @@ A seção "Próximos projetos" lista três projetos marcados como
 **Em construção** (lakehouse na AWS com Terraform + Iceberg, ELT com
 Airflow + dbt e streaming com Kafka). Quando terminar um, troque o badge por um link para o repositório e
 repita a estrutura do `projetos/orbita.html` para escrever o estudo de caso.
+
+## 6. Imagem de preview (LinkedIn, WhatsApp, Slack)
+
+As páginas têm tags Open Graph que apontam para `assets/og-image.png`
+(1200×627). A imagem é gerada a partir de `og/og-image.html`: edite o HTML e
+tire um screenshot de 1200×627, por exemplo com o Playwright:
+
+```bash
+python -c "
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    b = p.chromium.launch(); pg = b.new_page(viewport={'width': 1200, 'height': 627})
+    pg.goto('file://$PWD/og/og-image.html'); pg.screenshot(path='assets/og-image.png'); b.close()
+"
+```
+
+O LinkedIn guarda o preview em cache: depois de trocar a imagem, passe o link
+no [Post Inspector](https://www.linkedin.com/post-inspector/).

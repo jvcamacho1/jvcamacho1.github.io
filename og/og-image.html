@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OG image</title>
+<!--
+  Fonte da imagem de preview (Open Graph) do portfólio: 1200x627.
+  Para regerar assets/og-image.png, veja o README (seção "Imagem de preview").
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 627px; }
+  body {
+    background: radial-gradient(circle at 85% 15%, #123330 0, #0f1215 55%);
+    color: #e7e9ea; font-family: "DejaVu Sans", "Segoe UI", system-ui, sans-serif;
+    padding: 64px 80px; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .eyebrow { color: #5eead4; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: 20px; }
+  h1 { font-size: 76px; letter-spacing: -.02em; line-height: 1.05; margin-top: 10px; }
+  .role { font-size: 28px; color: #9aa3ab; margin-top: 14px; }
+  .nums { display: flex; gap: 20px; }
+  .num { background: #161a1e; border: 1px solid #2a3036; border-radius: 14px; padding: 18px 24px; flex: 1; }
+  .num b { display: block; font-size: 40px; color: #5eead4; letter-spacing: -.02em; }
+  .num span { font-size: 19px; color: #c7ccd1; }
+  .rodape { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .stack { font-size: 21px; color: #c7ccd1; line-height: 1.5; }
+  .stack strong { color: #e7e9ea; }
+  .url { font-size: 26px; font-weight: 700; color: #5eead4; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <div>
+    <p class="eyebrow">Data Engineering Portfolio</p>
+    <h1>José Camacho</h1>
+    <p class="role">Data Engineer · AWS · Big Data · Infrastructure as Code</p>
+  </div>
+  <div class="nums">
+    <div class="num"><b>60+</b><span>AWS accounts in a Data Mesh</span></div>
+    <div class="num"><b>200+</b><span>tables made available</span></div>
+    <div class="num"><b>940 h/yr</b><span>processing time saved</span></div>
+  </div>
+  <div class="rodape">
+    <p class="stack"><strong>Python · PySpark · AWS Glue · Terraform · Airflow · dbt</strong><br>
+      Projects: Órbita Notícias · indicadores-br</p>
+    <p class="url">jvcamacho1.github.io</p>
+  </div>
+</body>
+</html>
