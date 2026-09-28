@@ -50,9 +50,6 @@ Este repositório é servido pelo GitHub Pages em
 **https://jvcamacho1.github.io**. Cada push na `main` publica em um ou dois
 minutos. O `.nojekyll` desliga o processamento Jekyll, que não é usado aqui.
 
-A versão original do site vive em `portfolio/` no repositório
-[`jvcamacho1/orbita`](https://github.com/jvcamacho1/orbita).
-
 ## 5. Próximos projetos
 
 A seção "Próximos projetos" lista três projetos marcados como

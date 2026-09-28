@@ -16,7 +16,6 @@ const CONFIG = {
   cv_pt: "cv/curriculo-pt.pdf",
   cv_en: "cv/resume-en.pdf",
   orbita_site: "https://orbitanoticias.com.br",
-  orbita_repo: "https://github.com/jvcamacho1/orbita",
 };
 
 const EN = {
