@@ -72,6 +72,7 @@ const EN = {
   "edu.degree": "Bachelor's in Computer Engineering",
   "edu.school": "Federal Technological University of Paraná (UTFPR), Cornélio Procópio",
   "edu.award": "3rd place at the XIII Idea Fair (Oct 2019) with the idea \"NoQueue\"",
+  "edu.cert2": "AWS Certified Data Engineer – Associate (2026)",
   "edu.cert": "AWS Certified Cloud Practitioner (2023)",
   "edu.courses": "SQL (HackerRank, 2022) · Python (CodinGame, 2022) · Coding Speed: Legend (CodinGame, 2023)",
   "edu.lang": "Languages: Portuguese and English",
