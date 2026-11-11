@@ -1,13 +1,16 @@
 # Portfólio de Engenharia de Dados (PT/EN)
 
 Site estático, sem build e sem dependências: HTML, CSS e um JS pequeno.
+A única requisição externa são as fontes (Instrument Serif, Inter e
+JetBrains Mono), carregadas do Google Fonts.
 Abre com um duplo clique no `index.html` e funciona no GitHub Pages sem
 nenhuma configuração.
 
 ```
 index.html             → página principal (hero, sobre, stack, projeto em destaque, próximos projetos, contato)
 projetos/orbita.html   → estudo de caso do Órbita Notícias
-assets/style.css       → tema claro/escuro automático + botão, responsivo
+assets/style.css       → tema escuro por padrão, claro pelo botão, responsivo
+assets/field.js        → fundo animado: glifos soltos no topo que viram uma grade ao rolar
 assets/i18n.js         → seus dados (CONFIG), textos em inglês (EN), alternância PT/EN e tema
 check_i18n.py          → confere traduções faltando e links quebrados
 ```
@@ -47,8 +50,8 @@ python -m http.server 8000   # http://localhost:8000
 ## 4. Publicação
 
 Este repositório é servido pelo GitHub Pages em
-**https://jvcamacho1.github.io**. Cada push na `main` publica em um ou dois
-minutos. O `.nojekyll` desliga o processamento Jekyll, que não é usado aqui.
+**https://jvcamacho.dev**. Cada push na `main` publica em um ou dois
+minutos. O arquivo `CNAME` diz ao GitHub Pages qual é o domínio próprio. O `.nojekyll` desliga o processamento Jekyll, que não é usado aqui.
 
 ## 5. Próximos projetos
 

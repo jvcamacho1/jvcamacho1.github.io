@@ -12,10 +12,11 @@ const CONFIG = {
   name: "José Camacho",
   github: "https://github.com/jvcamacho1",
   linkedin: "https://www.linkedin.com/in/jvcamacho/",
-  email: "mailto:jv_camacho@hotmail.com",
+  email: "mailto:contato@jvcamacho.dev",
   cv_pt: "cv/curriculo-pt.pdf",
   cv_en: "cv/resume-en.pdf",
   orbita_site: "https://orbitanoticias.com.br",
+  orbita_numeros: "https://orbitanoticias.com.br/api/v1/numeros",
 };
 
 const EN = {
@@ -29,6 +30,8 @@ const EN = {
 
   // Hero
   "hero.eyebrow": "Data Engineer",
+  "hero.title": "I extract information and build <em>knowledge</em> out of a sea of <span class=\"chaos\" data-text=\"chaotic\">chaotic</span> data.",
+  "hero.scroll": "Scroll to bring order",
   "hero.role": "Data Engineer at GFT · AWS, Big Data & Infrastructure as Code",
   "hero.lead": "I design, build, and optimize batch and streaming data pipelines on AWS and Hadoop: from ingestion to the Data Mesh, with Terraform, CI/CD, and automated tests.",
   "hero.cta.exp": "See my experience",
@@ -102,6 +105,11 @@ const EN = {
   "feat.s6": "precision on labeled corpus",
   "feat.s7": "production server",
   "feat.s8": "GitHub Actions workflows",
+  "live.badge": "Live · production data",
+  "live.s1": "articles in the last 48 h",
+  "live.s2": "events clustered right now",
+  "live.s3": "since the last ingestion",
+  "live.s4": "since the last clustering",
   "feat.hl.title": "Data engineering highlights",
   "feat.hl.1": "<strong>Resilient ingestion:</strong> RSS with automatic fallback to news sitemaps when a feed silently freezes; per-source failure log in JSONL; daily feed-health workflow.",
   "feat.hl.2": "<strong>Schema migrations as a command:</strong> versioned, with a lock and a backup before each run; a backfill script rebuilds historical events.",
@@ -144,9 +152,10 @@ const EN = {
   "road.2.title": "Public-data ELT with Airflow + dbt",
   "road.2.problem": "Consolidate Brazilian economic indicators (Central Bank, IBGE) into an analytical model that updates on its own.",
   "road.2.shows": "Orchestration with retries and backfill, dimensional modeling (staging → marts), dbt tests and docs, incremental loads.",
-  "road.3.title": "Streaming events with Kafka",
-  "road.3.problem": "Process a real-time event stream (e.g. public transport positions) and trigger alerts for anomalies.",
-  "road.3.shows": "Producers/consumers, partitioning, windowed aggregations, at-least-once delivery, and idempotent sinks.",
+  "road.3.title": "Bluesky trends in streaming with Kafka",
+  "road.3.problem": "Follow in real time what Portuguese-speaking Bluesky is talking about: consume the public post stream (Jetstream), filter by language, and compute trending terms and post volume.",
+  "road.3.shows": "Async producer with reconnection and cursor, Kafka in KRaft mode, Avro with Schema Registry and schema evolution, dead-letter topic, integration tests, and CI/CD deploy. Next phases: Flink windows, ClickHouse, and Grafana.",
+  "road.3.live": "See it live",
 
   // Contato
   "contact.eyebrow": "Contact",
@@ -227,6 +236,37 @@ const EN = {
   nodes.forEach((el) => { PT[el.dataset.i18n] = el.innerHTML; });
   const dict = { pt: PT, en: EN };
 
+  // Números do Órbita ao vivo. Sem resposta, a faixa nem aparece e os
+  // números fixos do HTML continuam valendo.
+  let current = "pt";
+  let live = null;
+  function since(iso) {
+    const min = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
+    if (isNaN(min)) return "—";
+    return min < 120 ? min + " min" : Math.round(min / 60) + " h";
+  }
+  function renderLive() {
+    const box = document.getElementById("orbita-live");
+    if (!live || !box) return;
+    const fmt = new Intl.NumberFormat(current === "en" ? "en-US" : "pt-BR");
+    document.querySelectorAll("[data-live]").forEach((el) => {
+      const v = live[el.dataset.live];
+      if (typeof v === "number") el.textContent = fmt.format(v);
+    });
+    document.querySelectorAll("[data-live-since]").forEach((el) => {
+      const v = live[el.dataset.liveSince];
+      if (v) el.textContent = since(v);
+    });
+    box.hidden = false;
+  }
+  function loadLive() {
+    if (document.hidden || !document.getElementById("orbita-live") || !window.fetch) return;
+    fetch(CONFIG.orbita_numeros)
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((d) => { live = d; renderLive(); })
+      .catch(() => { /* fora do ar: ficam os números fixos */ });
+  }
+
   function setLang(lang) {
     nodes.forEach((el) => {
       const v = dict[lang][el.dataset.i18n];
@@ -238,6 +278,8 @@ const EN = {
     const t = document.querySelector("title[data-title-en]");
     if (t) { t.dataset.titlePt = t.dataset.titlePt || t.textContent; t.textContent = lang === "en" ? t.dataset.titleEn : t.dataset.titlePt; }
     store.set("lang", lang);
+    current = lang;
+    renderLive();
   }
 
   const saved = store.get("lang");
@@ -245,15 +287,45 @@ const EN = {
   document.querySelectorAll(".lang-switch button").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
   setLang(initial);
 
-  // Tema
-  const savedTheme = store.get("theme");
-  if (savedTheme) root.dataset.theme = savedTheme;
+  // Tema: escuro por padrão; o <head> já aplicou a escolha salva.
   const tbtn = document.getElementById("theme-toggle");
   if (tbtn) tbtn.addEventListener("click", () => {
-    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-    root.dataset.theme = dark ? "light" : "dark";
+    root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
     store.set("theme", root.dataset.theme);
   });
+
+  // A palavra ".chaos" nunca assenta: troca letras por glifos o tempo todo.
+  // O texto real fica intacto no HTML; o que pisca é só o atributo data-show.
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const GLYPHS = "01{}[]<>/#%&?!*+=~^:;";
+  function scramble() {
+    document.querySelectorAll(".chaos").forEach((el) => {
+      const chars = (el.dataset.text || el.textContent).split("");
+      if (!reduce) for (let i = 0; i < 2; i++) chars[(Math.random() * chars.length) | 0] = GLYPHS[(Math.random() * GLYPHS.length) | 0];
+      el.dataset.show = chars.join("");
+    });
+  }
+  scramble();
+  if (!reduce) setInterval(scramble, 140);
+  document.querySelectorAll(".lang-switch button").forEach((b) => b.addEventListener("click", scramble));
+
+  // Entrada suave dos blocos ao rolar.
+  if ("IntersectionObserver" in window && !reduce) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll("main section:not(.hero) .wrap > *, .job, .stat, .stack-group, .road-grid > .card").forEach((el) => {
+      const sib = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.setProperty("--d", Math.min(sib, 6) * 70 + "ms");
+      el.classList.add("reveal");
+      io.observe(el);
+    });
+  }
+
+  loadLive();
+  setInterval(loadLive, 60000);
+  setInterval(renderLive, 20000);
+  document.addEventListener("visibilitychange", loadLive);
 
   const y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
