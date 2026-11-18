@@ -75,5 +75,7 @@ with sync_playwright() as p:
 "
 ```
 
-O LinkedIn guarda o preview em cache: depois de trocar a imagem, passe o link
-no [Post Inspector](https://www.linkedin.com/post-inspector/).
+O LinkedIn guarda o preview em cache, e a imagem fica guardada pelo endereço:
+depois de trocar a imagem, aumente o `?v=` do `og:image` no `index.html` (senão
+ele reaproveita a imagem antiga) e passe o link no
+[Post Inspector](https://www.linkedin.com/post-inspector/).
